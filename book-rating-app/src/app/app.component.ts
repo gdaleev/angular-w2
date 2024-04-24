@@ -14,6 +14,7 @@ export class AppComponent {
   sumRating = 0;
   ratingCount = 0;
   avgRating = 0;
+  isInputDisabled = true;
   bookArray = [
     {
       name: 'To Kill a Mockingbird',
@@ -60,11 +61,21 @@ export class AppComponent {
   ];
 
   getCurrentRating(rating: number) {
-    this.userRating = 0;
+    this.userRating = rating;
+    this.isInputDisabled = false;
+  }
 
+  calcAvgRating(rating: number) {
+    this.userRating = 0;
+    this.isInputDisabled = true;
+    this.index++;
+    if (this.index == this.bookArray.length) {
+      this.index = 0;
+      this.avgRating = 0;
+      return;
+    }
     this.sumRating += rating;
     this.ratingCount++;
-
-    this.userRating = rating;
+    this.avgRating = this.sumRating / this.ratingCount;
   }
 }
