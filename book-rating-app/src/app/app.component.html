@@ -1,34 +1,61 @@
-<div class="flex-container">
-  <h3>Име на книгата</h3>
-  <input type="text" class="input-name" value={{bookArray[index].name}} [disabled]="isInputDisabled"/>
+<div *ngIf="jobWellDone">
+  <h1>Работата е свършена успешно</h1>
 </div>
 
-<div class="flex-container">
-  <h3>Описание на книгата</h3>
-  <input type="text" class="input-desc" value={{bookArray[index].description}} [disabled]="isInputDisabled"/>
+<div *ngIf="!jobWellDone && index == bookArray.length">
+  <h1>Вие оценихте всички книги успешно</h1>
+  <button (click)="resetIndex()">Искам да ги оценя отново</button>
+  <button (click)="finishJob()">Не, ок съм</button>
 </div>
 
-<div class="flex-container">
-  <h3>Автор на книгата</h3>
-  <input type="text" class="input-auth" value={{bookArray[index].author}} [disabled]="isInputDisabled"/>
-</div>
+<div *ngIf="!jobWellDone && index < bookArray.length">
+  <div class="flex-container">
+    <h3>Име на книгата</h3>
+    <input
+      type="text"
+      class="input-name"
+      value="{{ bookArray[index].name }}"
+      [disabled]="isInputDisabled"
+    />
+  </div>
 
-<div class="flex-container">
-  <h3>Вашият рейтинг &#10230;</h3>
-  <h3 id="avgRating">{{userRating}}</h3>
-</div>
+  <div class="flex-container">
+    <h3>Описание на книгата</h3>
+    <input
+      type="text"
+      class="input-desc"
+      value="{{ bookArray[index].description }}"
+      [disabled]="isInputDisabled"
+    />
+  </div>
 
-<div class="flex-container">
-  <h3>Среден рейтинг &#10230;</h3>
-  <h3 id="avgRating">{{avgRating}}</h3>
-</div>
+  <div class="flex-container">
+    <h3>Автор на книгата</h3>
+    <input
+      type="text"
+      class="input-auth"
+      value="{{ bookArray[index].author }}"
+      [disabled]="isInputDisabled"
+    />
+  </div>
 
-<div class="flex-container">
-  <button (click)="getCurrentRating(1)" class="rating-btn">1</button>
-  <button (click)="getCurrentRating(2)" class="rating-btn">2</button>
-  <button (click)="getCurrentRating(3)" class="rating-btn">3</button>
-  <button (click)="getCurrentRating(4)" class="rating-btn">4</button>
-  <button (click)="getCurrentRating(5)" class="rating-btn">5</button>
-</div>
+  <div class="flex-container">
+    <h3>Вашият рейтинг &#10230;</h3>
+    <h3 id="avgRating">{{ userRating }}</h3>
+  </div>
 
-<button (click)="calcAvgRating(userRating)" class="submit-btn">Готово</button>
+  <div class="flex-container">
+    <h3>Среден рейтинг &#10230;</h3>
+    <h3 id="avgRating">{{ avgRating.toFixed(1) }}</h3>
+  </div>
+
+  <div class="flex-container">
+    <button (click)="getCurrentRating(1)" class="rating-btn">1</button>
+    <button (click)="getCurrentRating(2)" class="rating-btn">2</button>
+    <button (click)="getCurrentRating(3)" class="rating-btn">3</button>
+    <button (click)="getCurrentRating(4)" class="rating-btn">4</button>
+    <button (click)="getCurrentRating(5)" class="rating-btn">5</button>
+  </div>
+
+  <button (click)="calcAvgRating(userRating)" class="submit-btn">Готово</button>
+</div>

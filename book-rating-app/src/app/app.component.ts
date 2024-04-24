@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -15,6 +16,7 @@ export class AppComponent {
   ratingCount = 0;
   avgRating = 0;
   isInputDisabled = true;
+  jobWellDone = false;
   bookArray = [
     {
       name: 'To Kill a Mockingbird',
@@ -70,12 +72,19 @@ export class AppComponent {
     this.isInputDisabled = true;
     this.index++;
     if (this.index == this.bookArray.length) {
-      this.index = 0;
       this.avgRating = 0;
       return;
     }
     this.sumRating += rating;
     this.ratingCount++;
     this.avgRating = this.sumRating / this.ratingCount;
+  }
+
+  resetIndex() {
+    this.index = 0;
+  }
+
+  finishJob() {
+    this.jobWellDone = true;
   }
 }
