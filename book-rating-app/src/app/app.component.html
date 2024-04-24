@@ -1,0 +1,29 @@
+<div class="flex-container">
+  <h3>Име на книгата</h3>
+  <input type="text" class="input-name" value={{bookArray[index].name}}/>
+</div>
+
+<div class="flex-container">
+  <h3>Описание на книгата</h3>
+  <input type="text" class="input-desc" value={{bookArray[index].description}}/>
+</div>
+
+<div class="flex-container">
+  <h3>Автор на книгата</h3>
+  <input type="text" class="input-auth" value={{bookArray[index].author}}/>
+</div>
+
+<div class="flex-container">
+  <h3>Рейтинг до момента &#10230;</h3>
+  <h3 id="avgRating">{{userRating}}</h3>
+</div>
+
+<div class="flex-container">
+  <button (click)="getCurrentRating(1)" class="rating-btn">1</button>
+  <button (click)="getCurrentRating(2)" class="rating-btn">2</button>
+  <button (click)="getCurrentRating(3)" class="rating-btn">3</button>
+  <button (click)="getCurrentRating(4)" class="rating-btn">4</button>
+  <button (click)="getCurrentRating(5)" class="rating-btn">5</button>
+</div>
+
+<button class="submit-btn">Готово</button>
